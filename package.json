@@ -16,7 +16,6 @@
     "vite": "^5.0.11",
     "@vitejs/plugin-react": "^4.2.1"
   },
-  "main": "/index.tsx",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

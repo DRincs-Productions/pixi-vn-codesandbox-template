@@ -8,8 +8,8 @@ export default function NarrationScreen() {
   const { data: canGoBack = false } = useQueryCanGoBack();
 
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         position: "absolute",
         display: "flex",
         flexDirection: "column",
@@ -17,10 +17,10 @@ export default function NarrationScreen() {
         width: "100%",
       }}
     >
-      <Box sx={{ flex: 1, minHeight: 0 }}>
+      <div style={{ flex: 1, minHeight: 0 }}>
         {/* READ THIS: https://pixi-vn.web.app/start/choices.html#how-to-create-the-choice-menu-ui-screen */}
         <ChoiceMenu />
-      </Box>
+      </div>
       {text && (
         <Box
           sx={{
@@ -28,6 +28,7 @@ export default function NarrationScreen() {
             height: `30%`,
             minHeight: 0,
             pointerEvents: "auto",
+            backgroundColor: "white",
           }}
         >
           <Stack
@@ -78,6 +79,6 @@ export default function NarrationScreen() {
           </Stack>
         </Box>
       )}
-    </Box>
+    </div>
   );
 }
