@@ -25,7 +25,7 @@ export default function NarrationScreen() {
         <Box
           sx={{
             flex: "0 0 auto",
-            height: `30%`,
+            height: "30%",
             minHeight: 0,
             pointerEvents: "auto",
             backgroundColor: "white",
