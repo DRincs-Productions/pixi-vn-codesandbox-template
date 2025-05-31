@@ -1,4 +1,3 @@
-import { Box, Grid, Stack } from "@mui/system";
 import { useQueryCanGoBack, useQueryCanGoNext, useQueryDialogue } from "../hooks/useQueryInterface";
 import ChoiceMenu from "./ChoiceMenu";
 
@@ -22,62 +21,45 @@ export default function NarrationScreen() {
         <ChoiceMenu />
       </div>
       {text && (
-        <Box
-          sx={{
+        <div
+          style={{
             flex: "0 0 auto",
             height: "30%",
             minHeight: 0,
             pointerEvents: "auto",
             backgroundColor: "white",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
           }}
         >
-          <Stack
-            direction='column'
-            spacing={0}
-            sx={{
-              justifyContent: "flex-end",
-              alignItems: "flex-start",
+          {character && character.name && <b>{`${character?.name || ""} ${character?.surname || ""}`}</b>}
+          <div
+            style={{
+              marginRight: canGoNext || canGoBack ? "40px" : undefined,
+              display: "flex",
+              flexDirection: "row",
               height: "100%",
-              width: "100%",
+              minHeight: 0,
+              overflow: "hidden",
             }}
           >
-            {character && character.name && (
-              <div
+            {character?.icon && (
+              <img
+                src={character?.icon}
+                loading='lazy'
+                alt=''
                 style={{
-                  marginLeft: "10px",
+                  maxWidth: "30%",
+                  height: "auto",
+                  objectFit: "contain",
+                  display: "block",
                 }}
-              >
-                {character.name + (character.surname ? " " + character.surname : "")}
-              </div>
+              />
             )}
-            <Grid
-              container
-              direction={"row"}
-              sx={{
-                overflow: "auto",
-                marginRight: canGoNext || canGoBack ? "40px" : undefined,
-                height: "100%",
-              }}
-            >
-              {character?.icon && (
-                <Grid size={2}>
-                  <img
-                    src={character?.icon}
-                    loading='lazy'
-                    alt=''
-                    style={{
-                      maxHeight: "100%",
-                      maxWidth: "100%",
-                    }}
-                  />
-                </Grid>
-              )}
-              <Grid size={character?.icon ? 10 : 12}>
-                <Box>{text}</Box>
-              </Grid>
-            </Grid>
-          </Stack>
-        </Box>
+            <div style={{ flex: 1, minHeight: 0, overflow: "auto", height: "100%" }}>{text}</div>
+          </div>
+        </div>
       )}
     </div>
   );
