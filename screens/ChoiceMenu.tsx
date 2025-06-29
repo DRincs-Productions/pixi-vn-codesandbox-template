@@ -12,13 +12,15 @@ export default function ChoiceMenu() {
       direction='column'
       justifyContent='center'
       alignItems='center'
-      spacing={2}
+      rowSpacing={2}
       sx={{
         width: "100%",
         height: "100%",
         overflow: "auto",
         gap: 1,
         maxHeight: "100%",
+        margin: 0,
+        pointerEvents: menu?.length > 0 ? "auto" : "none",
       }}
     >
       {menu?.map((item, index) => {
