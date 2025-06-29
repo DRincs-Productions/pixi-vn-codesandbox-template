@@ -1,4 +1,3 @@
-import { Grid } from "@mui/system";
 import useNarrationFunctions from "../hooks/useNarrationFunctions";
 import { useQueryChoiceMenuOptions } from "../hooks/useQueryInterface";
 
@@ -7,31 +6,33 @@ export default function ChoiceMenu() {
   const { selectChoice } = useNarrationFunctions();
 
   return (
-    <Grid
-      container
-      direction='column'
-      justifyContent='center'
-      alignItems='center'
-      rowSpacing={2}
-      sx={{
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
         width: "100%",
         height: "100%",
         overflow: "auto",
-        gap: 1,
+        gap: "8px",
         maxHeight: "100%",
         margin: 0,
         pointerEvents: menu?.length > 0 ? "auto" : "none",
       }}
     >
-      {menu?.map((item, index) => {
-        return (
-          <Grid key={"choice-" + index} justifyContent='center' alignItems='center'>
-            <button style={{ pointerEvents: "auto" }} onClick={() => selectChoice(item)}>
-              {item.text}
-            </button>
-          </Grid>
-        );
-      })}
-    </Grid>
+      {menu?.map((item, index) => (
+        <button
+          key={"choice-" + index}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onClick={() => selectChoice(item)}
+        >
+          {item.text}
+        </button>
+      ))}
+    </div>
   );
 }

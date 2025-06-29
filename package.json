@@ -3,11 +3,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@drincs/pixi-vn": "^1.2.14",
-    "@emotion/styled": "^11.13.5",
-    "@emotion/react": "^11.13.5",
-    "@mui/system": "^6.1.10",
-    "@tanstack/react-query": "^5.62.2",
-    "@base-ui-components/react": "^1.0.0-beta.0"
+    "@tanstack/react-query": "^5.62.2"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
