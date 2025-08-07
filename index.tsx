@@ -1,4 +1,4 @@
-import { Container, Game, canvas, narration } from "@drincs/pixi-vn";
+import { Assets, Container, Game, canvas, narration } from "@drincs/pixi-vn";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
 import App from "./App";
@@ -39,6 +39,7 @@ Game.init(body, {
     Game.clear();
     await narration.jumpLabel(startLabel, {});
   });
+  Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
 
   reactRoot.render(
     <div
