@@ -1,3 +1,6 @@
+import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 import { useQueryCanGoBack, useQueryCanGoNext, useQueryDialogue } from "../hooks/useQueryInterface";
 import ChoiceMenu from "./ChoiceMenu";
 
@@ -57,7 +60,11 @@ export default function NarrationScreen() {
                 }}
               />
             )}
-            <div style={{ flex: 1, minHeight: 0, overflow: "auto", height: "100%" }}>{text}</div>
+            <div style={{ flex: 1, minHeight: 0, overflow: "auto", height: "100%" }}>
+              <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                {text}
+              </Markdown>
+            </div>
           </div>
         </div>
       )}
