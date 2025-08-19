@@ -1,10 +1,11 @@
 import { Assets, Container, Game, canvas, narration } from "@drincs/pixi-vn";
+import { importInkText } from "@drincs/pixi-vn-ink";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { HEIGHT, WIDTH } from "./constants";
 import { INTERFACE_DATA_USE_QUEY_KEY } from "./hooks/useQueryInterface";
-import { startLabel } from "./labels/startLabel";
+import startLabel from "./ink/start.ink";
 import "./styles.css";
 import { defineAssets } from "./utils/assets-utility";
 
@@ -37,7 +38,7 @@ Game.init(body, {
 
   Game.onEnd(async () => {
     Game.clear();
-    await narration.jumpLabel(startLabel, {});
+    await narration.jumpLabel("start", {});
   });
   Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
 
@@ -54,17 +55,19 @@ Game.init(body, {
     </div>
   );
 
-  defineAssets().then(() => {
-    Game.clear();
-    narration.callLabel(startLabel, {}).then(() => {
-      reactRoot.render(
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      );
-      queryClient.invalidateQueries({
-        queryKey: [INTERFACE_DATA_USE_QUEY_KEY],
+  defineAssets().then(() =>
+    importInkText([startLabel]).then(() => {
+      Game.clear();
+      narration.callLabel("start", {}).then(() => {
+        reactRoot.render(
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
+        );
+        queryClient.invalidateQueries({
+          queryKey: [INTERFACE_DATA_USE_QUEY_KEY],
+        });
       });
-    });
-  });
+    })
+  );
 });
