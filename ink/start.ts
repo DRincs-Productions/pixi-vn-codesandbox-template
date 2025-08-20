@@ -1,4 +1,4 @@
-=== start ===
+export const startLabel = `=== start ===
 We arrived into London at 9.45pm exactly.
 
 *	"There is not a moment to lose!"[] I declared.
@@ -20,3 +20,4 @@ He insisted that we hurried home to Savile Row
 === as_fast_as_we_could ===
 <> as fast as we could.
 -> start
+`;

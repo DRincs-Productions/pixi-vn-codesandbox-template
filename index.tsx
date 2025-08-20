@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { HEIGHT, WIDTH } from "./constants";
 import { INTERFACE_DATA_USE_QUEY_KEY } from "./hooks/useQueryInterface";
-import startLabel from "./ink/start.ink";
+import { startLabel } from "./ink/start";
 import "./styles.css";
 import { defineAssets } from "./utils/assets-utility";
 
