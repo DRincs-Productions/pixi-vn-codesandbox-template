@@ -8,7 +8,6 @@ import { INTERFACE_DATA_USE_QUEY_KEY } from "./hooks/useQueryInterface";
 import { startLabel } from "./ink/start";
 import "./styles.css";
 import { defineAssets } from "./utils/assets-utility";
-import { initializeInk } from "./utils/ink-utility";
 import "./values/characters";
 
 // Canvas setup with PIXI
@@ -57,7 +56,6 @@ Game.init(body, {
     </div>
   );
 
-  initializeInk();
   defineAssets().then(() =>
     importInkText([startLabel]).then(() => {
       Game.clear();
