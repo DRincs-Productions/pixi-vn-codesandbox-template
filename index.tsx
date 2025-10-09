@@ -2,7 +2,7 @@ import { Assets, Container, Game, canvas, narration } from "@drincs/pixi-vn";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { HEIGHT, WIDTH } from "./constants";
+import { BACKGROUND_COLOR, HEIGHT, WIDTH } from "./constants";
 import { INTERFACE_DATA_USE_QUEY_KEY } from "./hooks/useQueryInterface";
 import { startLabel } from "./labels/startLabel";
 import "./styles.css";
@@ -17,7 +17,7 @@ if (!body) {
 Game.init(body, {
   height: HEIGHT,
   width: WIDTH,
-  backgroundColor: "#303030",
+  backgroundColor: BACKGROUND_COLOR,
 }).then(() => {
   // Pixi.JS UI Layer
   canvas.addLayer("ui", new Container());
