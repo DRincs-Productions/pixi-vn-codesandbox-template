@@ -1,4 +1,4 @@
-import { canvas, MoveTicker, newLabel, showImageContainer } from "@drincs/pixi-vn";
+import { canvas, ImageContainer, newLabel, showImageContainer } from "@drincs/pixi-vn";
 
 export const startLabel = newLabel("start_label", [
   async () => {
@@ -9,6 +9,6 @@ export const startLabel = newLabel("start_label", [
   },
   () => {
     canvas.removeAllTickers();
-    let tickerId = canvas.addTicker("james", new MoveTicker({ destination: { x: 0, y: 1, type: "align" } }));
+    let tickerId = canvas.animate<ImageContainer>("james", { xAlign: 0, yAlign: 1 });
   },
 ]);
