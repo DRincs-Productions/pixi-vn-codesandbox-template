@@ -9,11 +9,11 @@ export default function useNarrationFunctions() {
 
   const goNext = useCallback(async () => {
     try {
-      if (!narration.canGoNext) {
+      if (!narration.canContinue) {
         return;
       }
       return narration
-        .goNext(gameProps)
+        .continue(gameProps)
         .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
         .catch((e) => console.error(e));
     } catch (e) {
@@ -24,10 +24,7 @@ export default function useNarrationFunctions() {
 
   const goBack = useCallback(async () => {
     return stepHistory
-      .goBack((_path) => {
-        // TODO: navigate in the url path
-        // READ THIS: https://pixi-vn.web.app/start/interface.html#navigate-switch-between-ui-screens
-      })
+      .back(gameProps)
       .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
       .catch((e) => console.error(e));
   }, [gameProps, queryClient]);

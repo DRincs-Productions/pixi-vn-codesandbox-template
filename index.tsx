@@ -38,7 +38,7 @@ Game.init(body, {
 
   Game.onEnd(async () => {
     Game.clear();
-    await narration.jumpLabel(startLabel, {});
+    await narration.jump(startLabel, {});
   });
   Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
 
@@ -57,7 +57,7 @@ Game.init(body, {
 
   defineAssets().then(() => {
     Game.clear();
-    narration.callLabel(startLabel, {}).then(() => {
+    narration.call(startLabel, {}).then(() => {
       reactRoot.render(
         <QueryClientProvider client={queryClient}>
           <App />
