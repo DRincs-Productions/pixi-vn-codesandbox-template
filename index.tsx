@@ -42,7 +42,6 @@ Game.init(body, {
   const queryClient = new QueryClient();
 
   Game.onEnd(async () => {
-    Game.clear();
     await Game.start(startLabel, {});
   });
   Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
@@ -61,7 +60,6 @@ Game.init(body, {
   );
 
   defineAssets().then(() => {
-    Game.clear();
     Game.start(startLabel, {}).then(() => {
       reactRoot.render(
         <QueryClientProvider client={queryClient}>
