@@ -1,4 +1,4 @@
-import { Assets, Container, Game, canvas, narration } from "@drincs/pixi-vn";
+import { Assets, Container, Game, canvas, sound } from "@drincs/pixi-vn";
 import { importInkText } from "@drincs/pixi-vn-ink";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
@@ -26,6 +26,11 @@ Game.init(body, {
   // Pixi.JS UI Layer
   canvas.addLayer("ui", new Container());
 
+  // Sound setup
+  sound.addChannel("bgm", { background: true });
+  sound.addChannel("sfx");
+  sound.defaultChannelAlias = "sfx";
+
   // React setup with ReactDOM
   const root = document.getElementById("root");
   if (!root) {
@@ -40,8 +45,7 @@ Game.init(body, {
   const queryClient = new QueryClient();
 
   Game.onEnd(async () => {
-    Game.clear();
-    await narration.jumpLabel("start", {});
+    await Game.start("start", {});
   });
   Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
 
@@ -55,23 +59,22 @@ Game.init(body, {
       }}
     >
       Loading...
-    </div>
+    </div>,
   );
 
   defineAssets().then(() =>
     importInkText([startLabel]).then(() => {
       initializeInk();
-      Game.clear();
-      narration.callLabel("start", {}).then(() => {
+      Game.start("start", {}).then(() => {
         reactRoot.render(
           <QueryClientProvider client={queryClient}>
             <App />
-          </QueryClientProvider>
+          </QueryClientProvider>,
         );
         queryClient.invalidateQueries({
           queryKey: [INTERFACE_DATA_USE_QUEY_KEY],
         });
       });
-    })
+    }),
   );
 });
