@@ -12,63 +12,63 @@ import { defineAssets } from "./utils/assets-utility";
 // Canvas setup with PIXI
 const body = document.body;
 if (!body) {
-  throw new Error("body element not found");
+    throw new Error("body element not found");
 }
 
 Game.init(body, {
-  height: HEIGHT,
-  width: WIDTH,
-  backgroundColor: BACKGROUND_COLOR,
+    height: HEIGHT,
+    width: WIDTH,
+    backgroundColor: BACKGROUND_COLOR,
 }).then(() => {
-  // Pixi.JS UI Layer
-  canvas.addLayer("ui", new Container());
+    // Pixi.JS UI Layer
+    canvas.addLayer("ui", new Container());
 
-  // Sound setup
-  sound.addChannel("bgm", { background: true });
-  sound.addChannel("sfx");
-  sound.defaultChannelAlias = "sfx";
+    // Sound setup
+    sound.addChannel("bgm", { background: true });
+    sound.addChannel("sfx");
+    sound.defaultChannelAlias = "sfx";
 
-  // React setup with ReactDOM
-  const root = document.getElementById("root");
-  if (!root) {
-    throw new Error("root element not found");
-  }
+    // React setup with ReactDOM
+    const root = document.getElementById("root");
+    if (!root) {
+        throw new Error("root element not found");
+    }
 
-  const htmlLayout = canvas.addHtmlLayer("ui", root);
-  if (!htmlLayout) {
-    throw new Error("htmlLayout not found");
-  }
-  const reactRoot = createRoot(htmlLayout);
-  const queryClient = new QueryClient();
+    const htmlLayout = canvas.addHtmlLayer("ui", root);
+    if (!htmlLayout) {
+        throw new Error("htmlLayout not found");
+    }
+    const reactRoot = createRoot(htmlLayout);
+    const queryClient = new QueryClient();
 
-  Game.onEnd(async () => {
-    await Game.start(startLabel, {});
-  });
-  Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
-
-  reactRoot.render(
-    <div
-      style={{
-        color: "white",
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-      }}
-    >
-      Loading...
-    </div>,
-  );
-
-  defineAssets().then(() => {
-    Game.start(startLabel, {}).then(() => {
-      reactRoot.render(
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>,
-      );
-      queryClient.invalidateQueries({
-        queryKey: [INTERFACE_DATA_USE_QUEY_KEY],
-      });
+    Game.onEnd(async () => {
+        await Game.start(startLabel, {});
     });
-  });
+    Game.onLoadingLabel(async (_stepId, { id }) => await Assets.backgroundLoadBundle(id));
+
+    reactRoot.render(
+        <div
+            style={{
+                color: "white",
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+            }}
+        >
+            Loading...
+        </div>,
+    );
+
+    defineAssets().then(() => {
+        Game.start(startLabel, {}).then(() => {
+            reactRoot.render(
+                <QueryClientProvider client={queryClient}>
+                    <App />
+                </QueryClientProvider>,
+            );
+            queryClient.invalidateQueries({
+                queryKey: [INTERFACE_DATA_USE_QUEY_KEY],
+            });
+        });
+    });
 });

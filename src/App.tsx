@@ -1,24 +1,23 @@
 import BackButton from "./components/BackButton";
-import NextButton from "./components/NextButton";
+import ContinueOverlay from "./components/ContinueOverlay";
 import TextInput from "./screens/modals/TextInput";
 import NarrationScreen from "./screens/NarrationScreen";
 
 export default function App() {
-  return (
-    <div>
-      <NarrationScreen />
-      <TextInput />
-      <div
-        style={{
-          position: "absolute",
-          right: 0,
-          top: "70%",
-          width: 40,
-        }}
-      >
-        <NextButton />
-        <BackButton />
-      </div>
-    </div>
-  );
+    return (
+        <ContinueOverlay>
+            <NarrationScreen />
+            <TextInput />
+            <div
+                style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "70%",
+                    width: 40,
+                }}
+            >
+                <BackButton />
+            </div>
+        </ContinueOverlay>
+    );
 }

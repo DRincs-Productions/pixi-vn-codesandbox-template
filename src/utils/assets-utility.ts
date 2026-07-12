@@ -7,5 +7,5 @@ import manifest from "../assets/manifest";
  * You can read more about assets management in the documentation: https://pixi-vn.web.app/start/assets-management.html
  */
 export async function defineAssets() {
-  Assets.init({ manifest });
+    Assets.init({ manifest });
 }
