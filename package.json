@@ -15,9 +15,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.3",
+    "@types/node": "^20",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "typescript": "latest"
+    "typescript": "^5.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,6 +26,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "biome format --write"
+  },
+  "overrides": {
+    "typescript": "$typescript"
   },
   "main": "/index.tsx",
   "browserslist": {

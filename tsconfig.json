@@ -3,7 +3,11 @@
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
-    "lib": ["dom", "es2015"],
+    "lib": ["dom", "es2020"],
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true
   }
